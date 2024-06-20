@@ -10,9 +10,11 @@ Options:
 """
 
 import MetaTrader5 as Mt
+
 from broker import Broker, EXECUTION
 from docopt import docopt
 from trade_api import new_position
+from logger import logger
 
 
 def main():
@@ -25,11 +27,10 @@ def main():
     exec_mode = args["<exec_mode>"]
     exec_mode = EXECUTION[exec_mode]
     symbols = args["<symbols>"]
-    print(args)
-
+    logger.info(f"Starting broker: {args}")
     Broker(path, login, password, server, symbols, prefix, exec_mode, server)
 
-    print(f"Start checking for the new trades in {server}")
+    logger.info(f"Start tracking new trades in {server}")
     trades_count = Mt.positions_total()
     while True:
         positions = Mt.positions_get()
@@ -44,7 +45,7 @@ def main():
                 side = trade.type
                 symbol = trade.symbol[:6]
                 new_position(symbol, volume, side)
-                print(f"New trade {symbol}, {volume}, {side}. Sending to the decision center.")
+                logger.info(f"New trade {symbol}, volume: {volume}, side: {side}. Sending info to the decision center")
             trades_count = positions_total
 
 

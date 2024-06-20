@@ -3,7 +3,7 @@ from typing import Dict
 import pandas as pd
 from fastapi import FastAPI
 import uvicorn
-
+from logger import logger
 
 HOST = '127.0.0.1'
 PORT = 8080
@@ -15,7 +15,7 @@ app = FastAPI()
 
 @app.get("/new_position/")
 def add_position(params: Dict):
-    print(f"Received a new trade: {params}")
+    logger.info(f"DC received a new trade: {params}")
     symbol = params["symbol"]
     volume = params["volume"]
     side = params["side"]

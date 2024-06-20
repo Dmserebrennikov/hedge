@@ -8,6 +8,13 @@ MT_RESPONSE_MARKET_CLOSE = 10018
 MT_RESPONSE_INVALID_STOP = 10016
 
 
+EXECUTION = {
+    "FOK": Mt.ORDER_FILLING_FOK,
+    "IOC": Mt.ORDER_FILLING_IOC,
+    "RETURN": Mt.ORDER_FILLING_RETURN,
+}
+
+
 class Broker:
     def __init__(self, path, login, password, server, symbols_list, prefix, exec_mode, name):
         print("Starting new broker class. Name", name)

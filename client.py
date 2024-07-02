@@ -2,7 +2,7 @@
 Script starts MT5 terminal of the broker, which requires hedging of positions
 
 Usage:
-    add_broker.py <path> <login> <password> <server> <prefix> <exec_mode> [<symbols> ...]
+    client.py <path> <login> <password> <server> <prefix> <exec_mode> [<symbols> ...]
 
 Options:
     -h, --help          Show this screen and exit

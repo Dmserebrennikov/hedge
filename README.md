@@ -15,7 +15,7 @@ The main module, `decision_center.py`, serves as the 'brain' of the project, whe
 
 ### CLIENT
 
-This module runs an instance of the MT5 terminal with an account that requires hedging of positions. The script tracks the number of open positions and, if there is a new one, sends detailed information about the relevant position to the decision center.
+This module runs an instance of the MT5 terminal with an account that requires hedging of positions. The script tracks the number of open positions and, if there is a new one, sends detailed information about the relevant position to the decision center. Each new account requires a new `client` instance to be run.
 
 ### HEDGE BROKER
 
@@ -29,3 +29,19 @@ The script operates in the following way:
 ### TUMBLER BROKER
 
 Additional module for "spike" users. This module runs an instance of the MT5 terminal with an account that requires hedging of positions (as well as `client`) on the server, where the Java application should be closed. Using this script it's possible to track the incoming signal (open position signal) and close the Java application to prevent the positions from being closed by the 'central close signal'.
+
+## Usage
+
+Navigate to the base folder in the command line and run the three modules:
+
+```
+python decision_center.py
+```
+
+```
+python hedge_broker.py <path> <login> <password> <server> <prefix> <exec_mode> [<symbols> ...]
+```
+
+```
+python client.py <path> <login> <password> <server> <prefix> <exec_mode> [<symbols> ...]
+```
